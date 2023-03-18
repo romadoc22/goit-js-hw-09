@@ -1,202 +1,72 @@
-// // import flatpickr from 'flatpickr';
-// // import 'flatpickr/dist/flatpickr.min.css';
-// import Notiflix from 'notiflix';
-// const timer = document.querySelector('.timer'); // отримуємо блок таймера
-// const daysEl = timer.querySelector('.days'); // отримуємо елемент виводу днів
-// const hoursEl = timer.querySelector('.hours'); // отримуємо елемент виводу годин
-// const minutesEl = timer.querySelector('.minutes'); // отримуємо елемент виводу хвилин
-// const secondsEl = timer.querySelector('.seconds'); // отримуємо елемент виводу секунд
-// const startBtn = document.querySelector('.start-btn'); // отримуємо кнопку запуску таймера
-// const dateInput = document.querySelector('#datetime-picker'); // отримуємо поле вибору дати
-// let countdownInterval; // змінна для зберігання ID інтервалу зворотнього відліку
-
-// // функція для оновлення таймера
-// function updateTimer() {
-//   const currentDate = new Date(); // поточна дата
-//   const targetDate = new Date(dateInput.value); // кінцева дата
-
-//   const totalSeconds = (targetDate - currentDate) / 1000; // розраховуємо загальну кількість секунд до кінцевої дати
-
-//   if (totalSeconds <= 0) {
-//     // якщо час вийшов, зупиняємо таймер
-//     clearInterval(countdownInterval);
-//     return;
-//   }
-
-//   const days = Math.floor(totalSeconds / 3600 / 24); // розраховуємо кількість днів
-//   const hours = Math.floor(totalSeconds / 3600) % 24; // розраховуємо кількість годин
-//   const minutes = Math.floor(totalSeconds / 60) % 60; // розраховуємо кількість хвилин
-//   const seconds = Math.floor(totalSeconds) % 60; // розраховуємо кількість секунд
-
-//   // виводимо значення на екран
-//   daysEl.textContent = days < 10 ? `0${days}` : days;
-//   hoursEl.textContent = hours < 10 ? `0${hours}` : hours;
-//   minutesEl.textContent = minutes < 10 ? `0${minutes}` : minutes;
-//   secondsEl.textContent = seconds < 10 ? `0${seconds}` : seconds;
-// }
-
-// // функція для запуску таймера
-// function startTimer() {
-//   clearInterval(countdownInterval); // очищуємо попередній інтервал, якщо він був запущений
-
-//   countdownInterval = setInterval(updateTimer, 1000); // запускаємо інтервал зворотнього відліку
-// }
-
-// // додаємо обробник події на кнопку запуску таймера
-// startBtn.addEventListener('click', startTimer);
-
-// // // ініціалізуємо бібліотеку flatpickr на полі вибору дати
-// // flatpickr(dateInput, options);
-
-// // // Елементи інтерфейсу
-// // const dateInput = document.querySelector('#date-selector');
-// // const startBtn = document.querySelector('#start-btn');
-// // const daysEl = document.querySelector('#days');
-// // const hoursEl = document.querySelector('#hours');
-// // const minutesEl = document.querySelector('#minutes');
-// // const secondsEl = document.querySelector('#seconds');
-
-// // Функція форматування числа з додаванням ведучих нулів
-// function addLeadingZero(value) {
-//   return value.toString().padStart(2, '0');
-// }
-
-// // Функція оновлення таймера
-// function updateTimer(endDate) {
-//   const remainingTime = endDate - new Date().getTime(); // Різниця між кінцевою датою і поточною датою в мілісекундах
-//   if (remainingTime < 0) {
-//     // Якщо користувач вибрав дату в минулому
-//     Notiflix.Notify.warning('Please choose a date in the future');
-//     return;
-//   }
-//   const { days, hours, minutes, seconds } = convertMs(remainingTime);
-//   daysEl.textContent = addLeadingZero(days);
-//   hoursEl.textContent = addLeadingZero(hours);
-//   minutesEl.textContent = addLeadingZero(minutes);
-//   secondsEl.textContent = addLeadingZero(seconds);
-//   if (remainingTime === 0) {
-//     // Якщо досягнуто кінцевої дати
-//     clearInterval(timerInterval);
-//     Notiflix.Notify.success('The timer has ended');
-//     startBtn.disabled = true;
-//   }
-// }
-
-// // Функція запуску таймера
-// function startTimer(endDate) {
-//   updateTimer(endDate); // Оновлення таймера перед запуском
-//   const timerInterval = setInterval(() => {
-//     updateTimer(endDate);
-//   }, 1000);
-//   return timerInterval;
-// }
-
-// // Функція обробки закриття вікна вибору дати
-// function onDateSelect(selectedDates) {
-//   const selectedDate = selectedDates[0];
-//   startBtn.disabled = false; // Активація кнопки «Start»
-//   startBtn.addEventListener('click', () => {
-//     startTimer(selectedDate.getTime());
-//   });
-// }
-
-// // Функція підрахунку значень
-// function convertMs(ms) {
-//   // Number of milliseconds per unit of time
-//   const second = 1000;
-//   const minute = second * 60;
-//   const hour = minute * 60;
-//   const day = hour * 24;
-
-//   // Remaining days
-//   const days = Math.floor(ms / day);
-//   // Remaining hours
-//   const hours = Math.floor((ms % day) / hour);
-//   // Remaining minutes
-//   const minutes = Math.floor(((ms % day) % hour) / minute);
-//   // Remaining seconds
-//   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
-
-//   return { days, hours, minutes, seconds };
-// }
-
-// // Ініціалізація вибору дати
-// flatpickr(dateInput, {
-//   minDate: 'today',
-//   dateFormat: 'd-m-Y',
-//   onClose: onDateSelect,
-// });
-
-// // Ініціалізація бібліотеки повідомлень
-// Notiflix.Notify.init({
-//   position: 'right-top',
-//   distance: '10px',
-//   fontSize: '14px',
-//   timeout: 3000,
-// });
-
 import flatpickr from 'flatpickr';
+import { Ukrainian } from 'flatpickr/dist/l10n/uk.js';
 import 'flatpickr/dist/flatpickr.min.css';
-import Notiflix from 'notiflix';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const inputEl = document.querySelector('#datetime-picker');
-const btnEl = document.querySelector('button[data-start]');
-const secondsEl = document.querySelector('span[data-seconds]');
-const minutesEl = document.querySelector('span[data-minutes]');
-const hoursEl = document.querySelector('span[data-hours]');
-const daysEl = document.querySelector('span[data-days]');
+const refs = {
+  btnStart: document.querySelector('button[data-start]'),
+  days: document.querySelector('span[data-days]'),
+  hours: document.querySelector('span[data-hours]'),
+  minutes: document.querySelector('span[data-minutes]'),
+  seconds: document.querySelector('span[data-seconds]'),
+};
 
-btnEl.setAttribute(`disabled`, true);
-btnEl.addEventListener('click', onStartTimer);
-let choosingDate = null;
-let timerId = null;
+let choosenDate = 0;
+let dateFromFuture = false;
+let diffTime = 0;
+let intervalId = null;
 
 const options = {
+  dateFormat: 'd-m-Y H:i',
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
-  minuteIncrement: 1,
+  minuteIncrement: 5,
+  locale: Ukrainian,
   onClose(selectedDates) {
-    console.log(selectedDates[0]);
-    onChoiceValidDate(selectedDates[0]);
+    choosenDate = selectedDates[0];
+    diffTime = choosenDate - new Date();
+    dateFromFuture = diffTime > 0;
+    if (!dateFromFuture) {
+      refs.btnStart.disabled = true;
+      showWarning();
+      repaintTimerVal(0);
+      return;
+    }
+
+    repaintTimerVal(diffTime);
+    refs.btnStart.disabled = false;
   },
 };
 
-function onChoiceValidDate(selectedDates) {
-  choosingDate = selectedDates.getTime();
-  if (selectedDates < Date.now()) {
-    Notify.failure('Please choose a date in the future');
+refs.btnStart.disabled = true;
+const fp = flatpickr('#datetime-picker', options);
+
+refs.btnStart.addEventListener('click', onBtnStartHandler);
+
+function onBtnStartHandler(e) {
+  if (refs.choosenDate < new Date()) {
+    showWarning();
+    repaintTimerVal(0);
+    return;
   }
 
-  if (selectedDates >= Date.now()) {
-    btnEl.removeAttribute('disabled');
+  intervalId = setInterval(timerCount, 1000);
+  // В условиях сказано, что "Если таймер запущен, для того чтобы выбрать новую дату и перезапустить его - необходимо перезагрузить страницу".
+  // Пошел по простому пути и просто удаляю календарь и отключаю кнопку
+  // хотя можно было просто выключать кнопку, но за одно поэксперементировал с календарем :)
+  fp.destroy();
+  refs.btnStart.disabled = true;
+}
+
+function timerCount() {
+  const difference = choosenDate - new Date();
+
+  if (difference <= 1000) {
+    clearInterval(intervalId);
   }
+  repaintTimerVal(difference);
 }
-
-function onStartTimer() {
-  timerId = setInterval(startTimer, 1000);
-  btnEl.setAttribute(`disabled`, true);
-  inputEl.setAttribute(`disabled`, true);
-}
-
-function startTimer() {
-  const differentDate = choosingDate - Date.now();
-  const formatDate = convertMs(differentDate);
-  renderDate(formatDate);
-  if (secondsEl.textContent === '00' && minutesEl.textContent === '00') {
-    Notify.success('Time end');
-    clearInterval(timerId);
-  }
-}
-
-function renderDate({ days, hours, minutes, seconds }) {
-  secondsEl.textContent = addLeadingZero(seconds);
-  minutesEl.textContent = addLeadingZero(minutes);
-  hoursEl.textContent = addLeadingZero(hours);
-  daysEl.textContent = addLeadingZero(days);
-}
-
-flatpickr(inputEl, options);
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -218,5 +88,192 @@ function convertMs(ms) {
 }
 
 function addLeadingZero(value) {
-  return String(value).padStart(2, '0');
+  return value.toString().padStart(2, 0);
 }
+
+function repaintTimerVal(time) {
+  const { days, hours, minutes, seconds } = convertMs(time);
+
+  refs.days.textContent = addLeadingZero(days);
+  refs.hours.textContent = addLeadingZero(hours);
+  refs.minutes.textContent = addLeadingZero(minutes);
+  refs.seconds.textContent = addLeadingZero(seconds);
+}
+
+function showWarning() {
+  Notify.failure('Please choose a date in the future', {
+    timeout: 3000,
+  });
+}
+
+// import flatpickr from 'flatpickr';
+// import 'flatpickr/dist/flatpickr.min.css';
+// import Notiflix from 'notiflix';
+
+// const inputEl = document.querySelector('#datetime-picker');
+// const btnEl = document.querySelector('button[data-start]');
+// const secondsEl = document.querySelector('span[data-seconds]');
+// const minutesEl = document.querySelector('span[data-minutes]');
+// const hoursEl = document.querySelector('span[data-hours]');
+// const daysEl = document.querySelector('span[data-days]');
+
+// btnEl.setAttribute(`disabled`, true);
+// btnEl.addEventListener('click', onStartTimer);
+// let choosingDate = null;
+// let timerId = null;
+
+// const options = {
+//   enableTime: true,
+//   time_24hr: true,
+//   defaultDate: new Date(),
+//   minuteIncrement: 1,
+//   onClose(selectedDates) {
+//     console.log(selectedDates[0]);
+//     onChoiceValidDate(selectedDates[0]);
+//   },
+// };
+
+// function onChoiceValidDate(selectedDates) {
+//   choosingDate = selectedDates.getTime();
+//   if (selectedDates < Date.now()) {
+//     Notify.failure('Please choose a date in the future');
+//   }
+
+//   if (selectedDates >= Date.now()) {
+//     btnEl.removeAttribute('disabled');
+//   }
+// }
+
+// function onStartTimer() {
+//   timerId = setInterval(startTimer, 1000);
+//   btnEl.setAttribute(`disabled`, true);
+//   inputEl.setAttribute(`disabled`, true);
+// }
+
+// function startTimer() {
+//   const differentDate = choosingDate - Date.now();
+//   const formatDate = convertMs(differentDate);
+//   renderDate(formatDate);
+//   if (secondsEl.textContent === '00' && minutesEl.textContent === '00') {
+//     Notify.success('Time end');
+//     clearInterval(timerId);
+//   }
+// }
+
+// function renderDate({ days, hours, minutes, seconds }) {
+//   secondsEl.textContent = addLeadingZero(seconds);
+//   minutesEl.textContent = addLeadingZero(minutes);
+//   hoursEl.textContent = addLeadingZero(hours);
+//   daysEl.textContent = addLeadingZero(days);
+// }
+
+// flatpickr(inputEl, options);
+
+// function convertMs(ms) {
+//   // Number of milliseconds per unit of time
+//   const second = 1000;
+//   const minute = second * 60;
+//   const hour = minute * 60;
+//   const day = hour * 24;
+
+//   // Remaining days
+//   const days = Math.floor(ms / day);
+//   // Remaining hours
+//   const hours = Math.floor((ms % day) / hour);
+//   // Remaining minutes
+//   const minutes = Math.floor(((ms % day) % hour) / minute);
+//   // Remaining seconds
+//   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+
+//   return { days, hours, minutes, seconds };
+// }
+
+// function addLeadingZero(value) {
+//   return String(value).padStart(2, '0');
+// }
+
+// import '../css/common.css';
+
+// const refs = {
+//   startBtn: document.querySelector('button[data-start]'),
+//   stopBtn: document.querySelector('button[data-action-stop]'),
+//   clockface: document.querySelector('[datetime-picker]'),
+// };
+
+// class Timer {
+//   constructor({ onTick }) {
+//     this.intervalId = null;
+//     this.isActive = false;
+//     this.onTick = onTick;
+
+//     this.init();
+//   }
+
+//   init() {
+//     const time = this.getTimeComponents(0);
+//     this.onTick(time);
+//   }
+
+//   start() {
+//     if (this.isActive) {
+//       return;
+//     }
+
+//     const startTime = Date.now();
+//     this.isActive = true;
+
+//     this.intervalId = setInterval(() => {
+//       const currentTime = Date.now();
+//       const deltaTime = currentTime - startTime;
+//       const time = this.getTimeComponents(deltaTime);
+
+//       this.onTick(time);
+//     }, 1000);
+//   }
+
+//   stop() {
+//     clearInterval(this.intervalId);
+//     this.isActive = false;
+//     const time = this.getTimeComponents(0);
+//     this.onTick(time);
+//   }
+
+//   /*
+//    * - Принимает время в миллисекундах
+//    * - Высчитывает сколько в них вмещается часов/минут/секунд
+//    * - Возвращает обьект со свойствами hours, mins, secs
+//    * - Адская копипаста со стека 💩
+//    */
+//   getTimeComponents(time) {
+//     const hours = this.pad(
+//       Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+//     );
+//     const mins = this.pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
+//     const secs = this.pad(Math.floor((time % (1000 * 60)) / 1000));
+
+//     return { hours, mins, secs };
+//   }
+
+//   /*
+//    * Принимает число, приводит к строке и добавляет в начало 0 если число меньше 2-х знаков
+//    */
+//   pad(value) {
+//     return String(value).padStart(2, '0');
+//   }
+// }
+
+// const timer = new Timer({
+//   onTick: updateClockface,
+// });
+
+// refs.startBtn.addEventListener('click', timer.start.bind(timer));
+// refs.stopBtn.addEventListener('click', timer.stop.bind(timer));
+
+// /*
+//  * - Принимает время в миллисекундах
+//  * - Высчитывает сколько в них вмещается часов/минут/секунд
+//  * - Рисует интерфейс
+//  */
+// function updateClockface({ hours, mins, secs }) {
+//   refs.clockface.textContent = `${hours}:${mins}:${secs}`;
+// }

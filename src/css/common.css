@@ -16,3 +16,12 @@ img {
   display: block;
   max-width: 100%;
 }
+
+.timer {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+
+  font-size: 30px;
+  font-weight: 700;
+}
