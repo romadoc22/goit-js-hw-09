@@ -21,7 +21,7 @@ const options = {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
-  minuteIncrement: 5,
+  minuteIncrement: 1,
   locale: Ukrainian,
   onClose(selectedDates) {
     choosenDate = selectedDates[0];
